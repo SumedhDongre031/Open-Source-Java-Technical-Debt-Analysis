@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Technical Debt Calculator</title>
+    <link rel="stylesheet" href="static/styles.css" />
+  </head>
+  <body>
+    <section>
+      <div class="color"></div>
+      <div class="color"></div>
+      <div class="color"></div>
+      <div class="box">
+        <div class="square" style="--i: 0"></div>
+        <div class="square" style="--i: 1"></div>
+        <div class="square" style="--i: 2"></div>
+        <div class="square" style="--i: 3"></div>
+        <div class="square" style="--i: 4"></div>
+        <div class="container">
+          <div class="form">
+            <h2>Technical Debt Calculator V1.0</h2>
+            <form id="predictionForm">
+              <div class="inputBx">
+                <!-- <label for="fanin">Fanin:</label> -->
+                <input
+                  type="text"
+                  id="fanin"
+                  name="fanin"
+                  placeholder="Enter fanin value"
+                />
+              </div>
+              <div class="inputBx">
+                <!-- <label for="fanout">Fanout:</label> -->
+                <input
+                  type="text"
+                  id="fanout"
+                  name="fanout"
+                  placeholder="Enter fanout value"
+                />
+              </div>
+              <div class="inputBx">
+                <!-- <label for="total_methods">Total Methods:</label> -->
+                <input
+                  type="text"
+                  id="total_methods"
+                  name="total_methods"
+                  placeholder="Enter total methods"
+                />
+              </div>
+              <div class="inputBx">
+                <!-- <label for="total_variables">Total Variables:</label> -->
+                <input
+                  type="text"
+                  id="total_variables"
+                  name="total_variables"
+                  placeholder="Enter total variables"
+                />
+              </div>
+              <div class="inputBx">
+                <!-- <label for="total_lines">Total Lines:</label> -->
+                <input
+                  type="text"
+                  id="total_lines"
+                  name="total_lines"
+                  placeholder="Enter total lines"
+                />
+              </div>
+              <div class="inputBx">
+                <!-- <label for="comment_lines">Comment Lines:</label> -->
+                <input
+                  type="text"
+                  id="comment_lines"
+                  name="comment_lines"
+                  placeholder="Enter comment lines"
+                />
+              </div>
+              <div class="inputBx">
+                <!-- <label for="occurences">Occurrences:</label> -->
+                <input
+                  type="text"
+                  id="occurences"
+                  name="occurences"
+                  placeholder="Enter occurrences"
+                />
+              </div>
+              <div class="inputBx">
+                <input type="button" value="Predict" onclick="predict()" />
+              </div>
+            </form>
+            <div id="result"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      function predict() {
+        var formData = new FormData(document.getElementById("predictionForm"));
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/", true); // Send the POST request to the root URL
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText);
+            var predictionPercentage = (response.prediction * 100).toFixed(2); // Convert prediction to percentage
+            document.getElementById("result").innerHTML =
+              "TD Probability: " + predictionPercentage + "%";
+          }
+        };
+        xhr.send(formData);
+      }
+    </script>
+  </body>
+</html>
