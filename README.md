@@ -8,7 +8,7 @@
 
 ## Overview
 
-This repository is dedicated to exploring and documenting technical debt in open-source Java projects. Technical debt refers to the accumulated cost of additional work needed to fix and maintain code that was expediently implemented but not properly refactored. By analyzing various Java projects, we aim to identify common patterns of technical debt, understand their impact, and propose strategies for mitigation.
+This repository explores and documents technical debt in open-source Java projects. Technical debt refers to the accumulated cost of additional work needed to fix and maintain code that was expediently implemented but not properly refactored. By analyzing various Java projects, we aim to identify common patterns of technical debt, understand their impact, and propose strategies for mitigation.
 
 ## Table of Contents
 
